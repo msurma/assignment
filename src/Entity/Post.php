@@ -2,16 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Get;
+use App\Dto\Response\PostResponse;
 use App\Repository\PostRepository;
+use App\State\PostRepresentationProvider;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+#[Get(output: PostResponse::class, provider: PostRepresentationProvider::class)]
 class Post
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid', unique: true)]
+    #[ORM\Column(type: 'string', unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
     private string $id;
