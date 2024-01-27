@@ -26,3 +26,6 @@ services:
     App\Service\BlogService: ~
 
     App\Service\BlogServiceInterface: '@App\Service\BlogService'
+
+    App\Repository\PostRepositoryInterface: '@App\Repository\PostRepository'
+    App\Repository\ImageRepositoryInterface: '@App\Repository\ImageRepository'

@@ -1,13 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace App\Repository;
 
-use App\Entity\Post;
-
-interface BlogServiceInterface
+interface PostRepositoryInterface
 {
-    public function getPostById(string $id): ?Post;
-
     public function getPosts(int $page = 1, int $itemsPerPage = 5): array;
 
     public function getPostsCount(): int;

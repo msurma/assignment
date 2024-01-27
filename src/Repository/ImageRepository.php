@@ -13,7 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Image[]    findAll()
  * @method Image[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ImageRepository extends AbstractRepository
+class ImageRepository extends AbstractRepository implements ImageRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
