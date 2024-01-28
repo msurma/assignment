@@ -11,4 +11,6 @@ interface BlogServiceInterface
     public function getPosts(int $page = 1, int $itemsPerPage = 5): array;
 
     public function getPostsCount(): int;
+
+    public function createPost(Post $post, bool $flush = false): bool;
 }

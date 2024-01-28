@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post as PostOperation;
+use App\Dto\Request\CreatePostRequest;
 use App\Dto\Response\PostResponse;
 use App\Repository\PostRepository;
 use App\State\PostListProvider;
@@ -23,6 +25,12 @@ use Doctrine\ORM\Mapping as ORM;
         output: PostResponse::class,
         provider: PostProvider::class,
     ),
+    new PostOperation(
+        status: 202,
+        input: CreatePostRequest::class,
+        output: false,
+        messenger: 'input',
+    )
 ])]
 class Post
 {

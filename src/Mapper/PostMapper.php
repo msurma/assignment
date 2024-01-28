@@ -2,7 +2,9 @@
 
 namespace App\Mapper;
 
+use App\Dto\Request\CreatePostRequest;
 use App\Dto\Response\PostResponse;
+use App\Entity\Image;
 use App\Entity\Post;
 
 final class PostMapper
@@ -17,5 +19,14 @@ final class PostMapper
         $postResponse->image = $post->getImage()->getPath();
 
         return $postResponse;
+    }
+
+    public function mapCreatePostRequestToPost(CreatePostRequest $createPostRequest, Image $image)
+    {
+        return Post::create(
+            $createPostRequest->title,
+            $createPostRequest->content,
+            $image
+        );
     }
 }

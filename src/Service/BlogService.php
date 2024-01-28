@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Post;
 use App\Repository\PostRepositoryInterface;
+use Doctrine\ORM\Exception\ORMException;
 
 final class BlogService implements BlogServiceInterface
 {
@@ -26,5 +27,17 @@ final class BlogService implements BlogServiceInterface
     public function getPostsCount(): int
     {
         return $this->postRepository->getPostsCount();
+    }
+
+    public function createPost(Post $post, bool $flush = false): bool
+    {
+        try {
+            $this->postRepository->save($post, $flush);
+
+            return true;
+        } catch (ORMException $e) {
+            // todo: log exception
+            return false;
+        }
     }
 }
