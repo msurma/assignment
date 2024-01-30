@@ -43,7 +43,7 @@ final class PostFactory extends ModelFactory
         return Post::class;
     }
 
-    protected function initialize()
+    protected function initialize(): static
     {
         return $this->instantiateWith(
             function (array $attributes) {

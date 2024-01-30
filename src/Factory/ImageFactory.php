@@ -41,7 +41,7 @@ final class ImageFactory extends ModelFactory
         return Image::class;
     }
 
-    protected function initialize()
+    protected function initialize(): static
     {
         return $this->instantiateWith(
             function (array $attributes) {
