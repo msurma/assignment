@@ -34,6 +34,8 @@ final class BlogService implements BlogServiceInterface
         try {
             $this->postRepository->save($post, $flush);
 
+            // todo: emit event and register subscriber that sends email
+
             return true;
         } catch (ORMException $e) {
             // todo: log exception

@@ -50,6 +50,8 @@ class Post
     #[ORM\JoinColumn(nullable: false)]
     private Image $image;
 
+    public const CONTENT_ALLOWED_TAGS = '<ul><li><ol><p><strong>';
+
     private function __construct()
     {
     }
@@ -62,8 +64,8 @@ class Post
     {
         $post = new self();
 
-        $post->title = $title;
-        $post->content = $content;
+        $post->title = strip_tags($title);
+        $post->content = strip_tags($content, self::CONTENT_ALLOWED_TAGS);
         $post->image = $image;
 
         return $post;
