@@ -3,17 +3,16 @@
 namespace App\State;
 
 use ApiPlatform\Metadata\Operation;
-use ApiPlatform\State\Pagination\ArrayPaginator;
 use ApiPlatform\State\Pagination\Pagination;
 use ApiPlatform\State\Pagination\PaginatorInterface;
 use ApiPlatform\State\Pagination\TraversablePaginator;
 use ApiPlatform\State\ProviderInterface;
-use App\Dto\Response\PostResponse;
+use App\ApiResource\PostApi;
 use App\Mapper\PostMapper;
 use App\Service\BlogServiceInterface;
 
 /**
- * @implements ProviderInterface<PostResponse|PostResponse[]|null>
+ * @implements ProviderInterface<PostApi|PostApi[]|null>
  */
 final class PostListProvider implements ProviderInterface
 {
@@ -34,7 +33,7 @@ final class PostListProvider implements ProviderInterface
 
         $response = new \ArrayIterator();
         foreach ($posts as $post) {
-            $response->append($this->postMapper->mapPostToPostResponse($post));
+            $response->append($this->postMapper->mapPostToPostApi($post));
         }
 
         return new TraversablePaginator($response, $page, $limit, $postsCount);

@@ -2,36 +2,11 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Post as PostOperation;
-use App\Dto\Request\CreatePostRequest;
-use App\Dto\Response\PostResponse;
 use App\Repository\PostRepository;
-use App\State\PostListProvider;
-use App\State\PostProvider;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
-#[ApiResource(operations: [
-    new GetCollection(
-        paginationItemsPerPage: 5,
-        output: PostResponse::class,
-        provider: PostListProvider::class,
-    ),
-    new Get(
-        output: PostResponse::class,
-        provider: PostProvider::class,
-    ),
-    new PostOperation(
-        status: 202,
-        input: CreatePostRequest::class,
-        output: false,
-        messenger: 'input',
-    )
-])]
 class Post
 {
     #[ORM\Id]

@@ -4,13 +4,12 @@ namespace App\State;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
-use App\Dto\Response\PostResponse;
-use App\Entity\Post;
+use App\ApiResource\PostApi;
 use App\Mapper\PostMapper;
 use App\Service\BlogServiceInterface;
 
 /**
- * @implements ProviderInterface<PostResponse|PostResponse[]|null>
+ * @implements ProviderInterface<PostApi|PostApi[]|null>
  */
 final class PostProvider implements ProviderInterface
 {
@@ -21,7 +20,7 @@ final class PostProvider implements ProviderInterface
     {
     }
 
-    public function provide(Operation $operation, array $uriVariables = [], array $context = []): PostResponse|array|null
+    public function provide(Operation $operation, array $uriVariables = [], array $context = []): PostApi|array|null
     {
         $post = $this->blogService->getPostById($uriVariables['id']);
 
@@ -29,6 +28,6 @@ final class PostProvider implements ProviderInterface
             return null;
         }
 
-        return $this->postMapper->mapPostToPostResponse($post);
+        return $this->postMapper->mapPostToPostApi($post);
     }
 }

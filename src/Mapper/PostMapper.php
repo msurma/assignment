@@ -2,23 +2,23 @@
 
 namespace App\Mapper;
 
+use App\ApiResource\PostApi;
 use App\Dto\Request\CreatePostRequest;
-use App\Dto\Response\PostResponse;
 use App\Entity\Image;
 use App\Entity\Post;
 
 final class PostMapper
 {
-    public function mapPostToPostResponse(Post $post): PostResponse
+    public function mapPostToPostApi(Post $post): PostApi
     {
-        $postResponse = new PostResponse();
+        $postApi = new PostApi();
 
-        $postResponse->id = $post->getId();
-        $postResponse->title = $post->getTitle();
-        $postResponse->content = $post->getContent();
-        $postResponse->image = $post->getImage()->getPath();
+        $postApi->id = $post->getId();
+        $postApi->title = $post->getTitle();
+        $postApi->content = $post->getContent();
+        $postApi->image = $post->getImage()->getPath();
 
-        return $postResponse;
+        return $postApi;
     }
 
     public function mapCreatePostRequestToPost(CreatePostRequest $createPostRequest, Image $image)
